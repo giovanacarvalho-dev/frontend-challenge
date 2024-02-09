@@ -1,0 +1,34 @@
+<div class="container">
+    <h2 class="title">Busca Cep</h2>
+
+    <form>
+        <div class="form-group">
+            <p style="color: grey; font-size: 11px;">Por favor, digite um CEP</p>
+            <input type="text" placeholder="12345-678" [(ngModel)]="cep" name="cep" id="cepInput" class="input" 
+                   pattern="\d{5}-?\d{3}" title="Digite um CEP válido (formato: 12345-678)" 
+                   (input)="applyMask($event)">
+        </div>
+        <button (click)="search(cep)" class="button"> 
+            Consultar
+        </button>
+    </form>
+    <div *ngIf="address" class="address-container">
+        <h3 class="subtitle">Endereço Encontrado</h3>
+        <table class="table">
+            <tr>
+                <th>CEP</th>
+                <th>Logradouro</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+            </tr>
+            <tr>
+                <td>{{ address.cep }}</td>
+                <td>{{ address.logradouro }}</td>
+                <td>{{ address.bairro }}</td>
+                <td>{{ address.localidade }}</td>
+                <td>{{ address.uf }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
