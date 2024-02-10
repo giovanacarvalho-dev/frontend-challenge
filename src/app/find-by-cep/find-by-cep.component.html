@@ -1,34 +1,40 @@
-<div class="container">
-    <h2 class="title">Busca Cep</h2>
-
-    <form>
-        <div class="form-group">
-            <p style="color: grey; font-size: 11px;">Por favor, digite um CEP</p>
-            <input type="text" placeholder="12345-678" [(ngModel)]="cep" name="cep" id="cepInput" class="input" 
-                   pattern="\d{5}-?\d{3}" title="Digite um CEP válido (formato: 12345-678)" 
-                   (input)="applyMask($event)">
+<div class='flex items-center justify-center min-h-screen from-purple-900 via-indigo-800 to-indigo-500 bg-gradient-to-br'>
+    <div class='w-full max-w-lg px-10 py-8 mx-auto bg-white border rounded-lg shadow-2xl'>
+        <div class='max-w-md mx-auto space-y-3'>
+            <h1 class="text-lg font-semibold">Busca Cep</h1>
+            <div>
+                <label class="block py-1 mb-2">Por favor, digite um CEP</label>
+                <input  id="cepInput" [(ngModel)]="cep" (input)="applyMask($event)" (keydown.enter)="search(cep)" pattern="\d{5}-?\d{3}" type="text" name="cep" placeholder="12345-678" class="border w-full py-2 px-2 rounded shadow hover:border-indigo-600 ring-1 ring-inset ring-gray-300 font-mono">
+            </div>
+            <div class="flex gap-3 pt-3 items-center">
+                <button type="submit" (click)="search(cep)" class="border hover:border-indigo-600 from-indigo-600 to-indigo-500 bg-gradient-to-br text-white px-4 py-2 rounded-lg shadow ring-1 ring-inset ring-gray-300">consultar</button>
+            </div>
+            <div *ngIf="address" class="shadow overflow-hidden rounded">
+                <table class="min-w-full bg-white">
+                    <tbody  class="text-gray-700">
+                        <tr>
+                            <td class="w-1/5 border border-indigo-800 text-left py-3 px-4 bg-indigo-600 text-white uppercase font-semibold text-sm">CEP</td>
+                            <td class="w-4/5 border border-gray-200 text-left py-3 px-4">{{ address.cep }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-1/5 border border-indigo-800 text-left py-3 px-4 bg-indigo-600 text-white uppercase font-semibold text-sm">Logradouro</td>
+                            <td class="w-4/5 border border-gray-200 text-left py-3 px-4">{{ address.logradouro }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-1/5 border border-indigo-800 text-left py-3 px-4 bg-indigo-600 text-white uppercase font-semibold text-sm">Bairro</td>
+                            <td class="w-4/5 border border-gray-200 text-left py-3 px-4">{{ address.bairro }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-1/5 border border-indigo-800 text-left py-3 px-4 bg-indigo-600 text-white uppercase font-semibold text-sm">Cidade</td>
+                            <td class="w-4/5 border border-gray-200 text-left py-3 px-4">{{ address.localidade }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-1/5 border border-indigo-800 text-left py-3 px-4 bg-indigo-600 text-white uppercase font-semibold text-sm">Estado</td>
+                            <td class="w-4/5 border border-gray-200 text-left py-3 px-4">{{ address.uf }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <button (click)="search(cep)" class="button"> 
-            Consultar
-        </button>
-    </form>
-    <div *ngIf="address" class="address-container">
-        <h3 class="subtitle">Endereço Encontrado</h3>
-        <table class="table">
-            <tr>
-                <th>CEP</th>
-                <th>Logradouro</th>
-                <th>Bairro</th>
-                <th>Cidade</th>
-                <th>Estado</th>
-            </tr>
-            <tr>
-                <td>{{ address.cep }}</td>
-                <td>{{ address.logradouro }}</td>
-                <td>{{ address.bairro }}</td>
-                <td>{{ address.localidade }}</td>
-                <td>{{ address.uf }}</td>
-            </tr>
-        </table>
     </div>
 </div>
