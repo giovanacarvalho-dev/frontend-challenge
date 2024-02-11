@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.3.
 
+ Um projeto Angular 17+ que mostre na tela inicial um input aonde será digitado o CEP com a frase, "Por favor digite um CEP:", na sequência ao clicar num botão "Consultar" vai ser chamado o GET do item 1 passando o CEP, o retorno (endereço ou mensagem de erro) terá que ser mostrado na tela de forma organizada.
+
+ ## Demonstração
+
+https://front-challenge.netlify.app
+
+(Como o backend nao possui um certificado SSL, é necessário habilitar requisicões não seguras no navegador)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
